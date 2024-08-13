@@ -14,7 +14,7 @@ app.use(
 app.use(productRoutes);
 
 mongoose
-  .connect(process.env.MONG_URI)
+  .connect(process.env.MONGODB_URI)
   .then((data) => {
     console.log("DB connection successful!");
   })
