@@ -4,17 +4,19 @@ const productRoutes = require("./routes/products");
 const mongoose = require("mongoose");
 const cors = require("cors");
 
+const MONGODB_URI = process.env.MONGODB_URI;
+
 const app = express();
 app.use(
   cors({
-    "origin": "*",
+    origin: "*",
   })
 );
 
 app.use(productRoutes);
 
 mongoose
-  .connect(process.env.MONGODB_URI)
+  .connect(MONGODB_URI)
   .then((data) => {
     console.log("DB connection successful!");
   })
