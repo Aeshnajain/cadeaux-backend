@@ -3,6 +3,18 @@ const mongoose = require("mongoose");
 
 const router = express.Router();
 
+router.get("/home-posters", async (_, res) => {
+  try {
+    const db = mongoose.connection;
+    const collection = db.collection("Home-page-posters");
+    const data = await collection.find({}).toArray();
+    res.json(data?.[0]?.posters);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Error fetching data from MongoDB");
+  }
+});
+
 router.get("/", async (_, res) => {
   try {
     const db = mongoose.connection;
